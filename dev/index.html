@@ -1,0 +1,35 @@
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>&lt;cytoscape-network> Demo</title>
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../node_modules/lit/polyfill-support.js"></script>
+    <script type="module" src="../cytoscape-network.js"></script>
+    <style>
+      p {
+        border: solid 1px blue;
+        padding: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content" style="width: 600px;height: 600px;" />
+
+    <script>
+      const elem = document.createElement("cytoscape-network");
+      elem.elements = [
+       { data: { id: 'a' } },
+       { data: { id: 'b' } },
+       { data: { id: 'ab', source: 'a', target: 'b' } },
+      ];
+      elem.styles = [
+        { selector: 'node', style: { 'background-color': '#666', label: 'data(id)' } },
+        { selector: 'edge', style: { 'width': 3, 'line-color': '#ccc' } },
+      ];
+      elem.layout = { name: 'circle' };
+      document.getElementById("content").appendChild(elem);
+    </script>
+  </body>
+</html>
